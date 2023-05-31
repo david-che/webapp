@@ -18,7 +18,7 @@ pipeline {
     stage('Run & Test the Container') {
       steps {
         echo 'Run & Test the Container'
-        sh 'docker run -d -p 5001:5001--name webapp-demo webapp:$BUILD_ID'
+        sh 'docker run -d -p 5001:5001 --name webapp-demo webapp:$BUILD_ID'
         sh 'sleep 5'
         sh 'curl localhost:5001'
         sh 'docker stop webapp-demo && docker rm webapp-demo'
