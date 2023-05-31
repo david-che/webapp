@@ -4,6 +4,7 @@ pipeline {
     stage('Checkout Code ') {
       steps {
         echo 'Checkout Code '
+        git(url: 'https://github.com/david-che/webapp.git', changelog: true, branch: 'main', poll: true)
       }
     }
 
