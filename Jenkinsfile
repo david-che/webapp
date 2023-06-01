@@ -29,7 +29,7 @@ pipeline {
       steps {
         withCredentials(bindings:[usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
           echo 'Upload to DockerHub'
-          sh '"docker login -u $user -p $pass"'
+          sh "docker login -u $user -p $pass"
           sh 'docker push david755chen/webapp:$BUILD_ID'
         }
       }
