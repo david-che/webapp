@@ -28,6 +28,9 @@ pipeline {
     stage('Upload to DockerHub') {
       steps {
         echo 'Upload to DockerHub'
+        sh '''//login to DockerHub
+"docker login -u $user -p $pass"'''
+        sh 'docker push david755chen/webapp:$BUILD_ID'
       }
     }
 
