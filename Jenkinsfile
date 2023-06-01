@@ -28,8 +28,10 @@ pipeline {
     stage('Upload to DockerHub') {
       steps {
         echo 'Upload to DockerHub'
-        sh '"docker login -u $user -p $pass"'
-        sh 'docker push david755chen/webapp:$BUILD_ID'
+        withCredentials(bindings:[usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+          sh "docker login -u $user -p $pass"
+          sh 'docker push david755chen/webapp:$BUILD_ID'
+        }
       }
     }
 
